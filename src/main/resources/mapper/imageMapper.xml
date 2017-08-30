@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.toutiao.mapper.ImageMapper" >
+    <resultMap id="image" type="com.toutiao.domain.Image">
+        <id property="id_" column="id_" />
+       	<result property="news_id" column="news_id" />
+        <result property="path_" column="path_" />
+        <result property="alt_" column="alt_" />
+        <result property="type_" column="type_" />
+        <result property="size_" column="size_" />
+        <result property="src_" column="src_" />
+    </resultMap>
+    
+    <insert id="insert" parameterType="com.toutiao.domain.Image" useGeneratedKeys="true" keyProperty="id_">
+       INSERT INTO image
+       		(news_id,path_,alt_,type_,size_,src_) 
+       	VALUES
+       		(#{news_id}, #{path_}, #{alt_},#{type_},#{size_},#{src_})
+    </insert>
+</mapper>

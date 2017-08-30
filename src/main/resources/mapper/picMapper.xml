@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.toutiao.mapper.PicMapper" >
+    <resultMap id="image" type="com.toutiao.domain.Pic">
+        <id property="id_" column="id_" />
+       	<result property="parent_id" column="parent_id" />
+        <result property="url_" column="url_" />
+        <result property="path_" column="path_" />
+        <result property="alt_" column="alt_" />
+        <result property="width_" column="width_" />
+        <result property="height_" column="height_" />
+    </resultMap>
+    
+    <insert id="insert" parameterType="com.toutiao.domain.Pic" useGeneratedKeys="true" keyProperty="id_">
+       INSERT INTO pic
+       		(parent_id,url_,path_,alt_,width_,height_) 
+       	VALUES
+       		(#{parent_id}, #{url_}, #{path_},#{alt_},#{width_},#{height_})
+    </insert>
+    <select id="getOneByUrl" parameterType="com.toutiao.domain.Pic" resultType="com.toutiao.domain.Pic">
+		SELECT * FROM pic WHERE url_ = #{url_}
+	</select>
+</mapper>

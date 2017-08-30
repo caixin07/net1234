@@ -1,0 +1,249 @@
+body {
+	font-family: "Microsoft Yahei", Î¢ÈíÑÅºÚ, "Helvetica Neue", Arial,
+		sans-serif;
+}
+
+a {
+	color: #222;
+	background: 0 0;
+	text-decoration: none;
+	outline: 0;
+	cursor: pointer;
+	transition: color .2s ease;
+}
+ol, ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+a:visited {
+	color: #999;
+}
+
+h4 {
+	color: #222;
+	padding: 0;
+	margin-bottom: 8px;
+	font-size: 18px;
+	font-weight: 700;
+}
+
+.more-mode .img-item:first-child {
+    margin-left: 0;
+}
+.media-left{
+	width:24%;
+}
+@media ( max-width : 768px) {
+	.media-left{
+		width:35%;
+	}
+}
+
+.img-item1 {
+    width: 158px;
+    height: auto;
+    margin-left: 2px;
+}
+@media ( max-width : 500px) {
+	.img-item1 {
+		width: 100%;
+		height: auto;
+		margin-left: 0px;
+	}
+}
+@media ( max-width : 450px) {
+	.img-item1 {
+		width: 100%;
+		height: auto;
+		margin-left: 0px;
+	}
+}
+@media ( max-width : 400px) {
+	.img-item1 {
+		width: 100%;
+		height: auto;
+		margin-left: 0px;
+	}
+}
+@media ( max-width : 350px) {
+	.img-item1 {
+		width: 100%;
+		height: auto;
+		margin-left: 0px;
+	}
+}
+.img-item {
+    width: 24%;
+    height: auto;
+    margin-left: 2px;
+}
+@media ( max-width : 767px) {
+	.img-item {
+		width: 32%;
+		height: auto;
+		margin-left: 0px;
+	}
+}
+@media ( max-width : 450px) {
+	.img-item {
+		width: 32%;
+		height: auto;
+		margin-left: 0px;
+	}
+}
+@media ( max-width : 400px) {
+	.img-item {
+		width: 32%;
+		height: auto;
+		margin-left: 0px;
+	}
+}
+@media ( max-width : 350px) {
+	.img-item {
+		width: 32%;
+		height: auto;
+		margin-left: 0px;
+	}
+}
+
+.media-list h4 {
+	display: inline;
+	font-size: 18px;
+	line-height: 24px;
+	margin-top: 0;
+	font-weight: bold;
+}
+
+.media-list h4 a {
+	color: #555;
+}
+
+.media-list h4 a:hover {
+	color: #45B6F7;
+}
+
+.excerpt .note {
+	font-size: 12px;
+	color: #999;
+	word-wrap: break-word;
+	line-height: 20px;
+}
+
+.excerpt header {
+	margin-bottom: 10px;
+}
+
+.excerpt .meta {
+	color: #999;
+	font-size: 10px;
+	margin-bottom: 5px;
+}
+
+.friend-links-content {
+	overflow: hidden;
+	margin-right: -20px;
+	margin-bottom: -20px;
+}
+
+.friend-links-content .item {
+	float: left;
+	margin: 0 20px 20px 0;
+}
+
+.friend-links-content .item a {
+	color: #777;
+	line-height: 1.4;
+	font-size: 14px;
+}
+.title-box {
+    display: block;
+    font-size: 20px;
+    line-height: 1.3;
+    margin-bottom: 4px;
+    font-weight: 700;
+    max-height: 52px;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.more-mode .img-list {
+    position: relative;
+    margin: 2px 0;
+}
+.bui-box {
+    display: block;
+    zoom: 1;
+}
+
+.img-wrap, .img-wrap:before {
+    display: inline-block;
+}
+.img-wrap {
+    position: relative;
+    cursor: pointer;
+    text-align: center;
+/**    border: 1px solid #e8e8e8;**/
+    background: #FFFFFF;
+    overflow: hidden;
+}
+.img-wrap>img {
+    display: inline-block;
+    max-width: 100%;
+    height: auto;
+    vertical-align: top;
+    transition: all .5s ease-out .1s;
+}	
+.footer-bar-action, .footer-bar-left {
+    display: inline-block;
+    vertical-align: middle;
+}
+.footer-bar-action {
+    font-size: 14px;
+    line-height: 1;
+}
+.footer-bar {
+    font-size: 10px;
+    color: #999;
+    margin-bottom: 5px;
+}
+
+.footer-bar-left {
+    font-size: 0;
+    line-height: 20px;
+}
+.bui-left {
+}
+
+.container .index-channel {
+    width: 110px;
+    height: 600px;
+    margin-right: 10px;
+    background-color: #fff;
+}
+.channel {
+    width: 110px;
+}
+.channel-item {
+    display: block;
+    width: 110px;
+    height: 40px;
+    line-height: 40px;
+    text-align: center;
+    color: #444;
+    border-radius: 4px;
+    margin-bottom: 2px;
+    transition-property: color,background-color;
+}
+.channel-item.active {
+    background-color: #ed4040;
+    color: #fff;
+}
+.channel-item:hover{animation-name:hvr-back-pulse;animation-duration:.2s;animation-timing-function:linear;animation-iteration-count:1;background-color:#ed4040;color:white
+}
+.channel-item span {
+    display: inline-block;
+    font-size: 16px;
+}

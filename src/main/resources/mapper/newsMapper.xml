@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.toutiao.mapper.NewsMapper">
+	<resultMap id="news" type="com.toutiao.domain.News">
+		<id property="id" column="id" />
+		<result property="text" column="text" />
+		<result property="title" column="title" />
+		<result property="user" column="user" />
+		<result property="time" column="time" />
+		<result property="synTime" column="synTime" />
+		<result property="url_" column="url_" />
+		<result property="img_" column="img_" />
+		<result property="imgAlt" column="imgAlt" />
+		<result property="isShow" column="isShow" />
+		<result property="count" column="count" />
+		<result property="type" column="type" />
+		<result property="keys_" column="keys_" />
+		<result property="baidusend" column="baidusend" />
+		<collection property="images" ofType="com.toutiao.domain.Image">
+			<id property="id_" column="id_" />
+			<result property="news_id" column="news_id" />
+			<result property="path_" column="path_" />
+			<result property="alt_" column="alt_" />
+			<result property="type_" column="type_" />
+			<result property="size_" column="size_" />
+			<result property="src_" column="src_" />
+		</collection >
+	</resultMap>
+	<sql id="query_news">	     
+		SELECT * from news a left join image b on a.id = b.news_id where a.isShow = '1' 
+	</sql>
+	<select id="getAll" resultMap="news">
+		  <include refid="query_news" /> order by synTime desc
+	</select>
+	<select id="getAllForTuijian" resultMap="news">
+		<include refid="query_news" /> order by count desc
+	</select>
+	<insert id="insert" parameterType="com.toutiao.domain.News"
+		useGeneratedKeys="true" keyProperty="id">
+		INSERT INTO news
+		(title,user,time,text,synTime,imgAlt,url_,img_,isShow,count,type,keys_,baidusend)
+		VALUES
+		(#{title},
+		#{user},#{time},#{text},#{synTime},#{imgAlt},#{url_},#{img_},#{isShow},#{count},#{type},#{keys_},#{baidusend})
+	</insert>
+	<select id="getOne" parameterType="int" resultType="com.toutiao.domain.News">
+		SELECT * FROM news WHERE id = #{id}
+	</select>
+	<select id="getOneByUrl" parameterType="com.toutiao.domain.News"
+		resultType="com.toutiao.domain.News">
+		SELECT * FROM news WHERE url_ = #{url_}
+	</select>
+	<select id="getListByType" parameterType="com.toutiao.domain.News"
+		resultMap="news">
+		SELECT * FROM news WHERE type = #{type} order by synTime desc
+	</select>
+	<select id="getListByBaiduSend" parameterType="com.toutiao.domain.News"
+		resultMap="news">
+		SELECT * FROM news WHERE baidusend = #{baidusend} order by synTime desc
+	</select>
+	<update id="updateBaiduSend" parameterType="com.toutiao.domain.News">
+		UPDATE news SET baidusend = #{baidusend} where id = #{id}
+	</update>
+	<update id="updateCount" parameterType="com.toutiao.domain.News">
+		UPDATE news SET count = #{count} where id = #{id}
+	</update>
+</mapper>
