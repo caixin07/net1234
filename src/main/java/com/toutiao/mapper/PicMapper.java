@@ -11,4 +11,6 @@ import com.toutiao.domain.Pic;
 public interface PicMapper {
 	public void insert(Pic pic);
 	public Pic getOneByUrl(Pic pic);
+	public List<Pic> getPicList();
+	public List<Pic> getChildPicList(Pic pic);
 }
