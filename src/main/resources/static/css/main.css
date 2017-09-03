@@ -188,6 +188,7 @@ h4 {
 /**    border: 1px solid #e8e8e8;**/
     background: #FFFFFF;
     overflow: hidden;
+    max-height: 117px;
 }
 .img-wrap>img {
     display: inline-block;

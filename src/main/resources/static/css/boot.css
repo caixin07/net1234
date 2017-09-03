@@ -5441,7 +5441,7 @@ a.badge:focus,a.badge:hover {
 .thumbnail {
 	display: block;
 	padding: 0px;
-	margin-bottom: 20px;
+	margin-bottom: 2px;
 	line-height: 1.42857143;
 	background-color: #fff;
 	/**border: 1px solid #ddd;*/
