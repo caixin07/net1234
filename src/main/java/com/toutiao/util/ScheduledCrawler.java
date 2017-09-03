@@ -35,7 +35,7 @@ public class ScheduledCrawler {
 	public void executeMydriversCrawler() throws IOException {
 		logger.info("ScheduledTest.executeMydriversCrawler 定时任务MydriversCrawler");
 		try {
-//			mydriversCrawler.getNews();
+			mydriversCrawler.getNews();
 		} catch (Exception e) {
 			logger.error("定时任务MydriversCrawler异常",e);
 		}
@@ -64,17 +64,17 @@ public class ScheduledCrawler {
 			logger.error("定时任务baiduSendService异常",e);
 		}
 	}
-//	@Scheduled(cron = "0 0/2 6-23 * * ?")
-//	public void executeFh21Task() throws IOException {
-//		logger.info("ScheduledTest.executeMydriversCrawler 定时任务Fh21Task");
-//		try {
-//			fh21Crawler.getNews();
-//		} catch (Exception e) {
-//			logger.error("定时任务Fh21Task异常",e);
-//		}
-//	}
 	@Scheduled(cron = "0 0/2 6-23 * * ?")
 	public void executeFh21Task() throws IOException {
+		logger.info("ScheduledTest.executeMydriversCrawler 定时任务Fh21Task");
+		try {
+			fh21Crawler.getNews();
+		} catch (Exception e) {
+			logger.error("定时任务Fh21Task异常",e);
+		}
+	}
+	@Scheduled(cron = "0 0/2 6-23 * * ?")
+	public void executeGrilTask() throws IOException {
 		logger.info("ScheduledTest.executeMydriversCrawler 定时任务opgirlCrawler");
 		try {
 //			opgirlCrawler.getNews();

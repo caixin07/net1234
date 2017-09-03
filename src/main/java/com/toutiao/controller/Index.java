@@ -59,7 +59,6 @@ public class Index {
 		for (News news : list) {
 			news.setText(HTMLSpirit.delHTMLTag(news.getText()));
 			news.setHref(request.getAttribute("basePath") + "/id/" + news.getId());
-			System.out.println("~~~~~~~~~~~~~~"+news);
 		}
 
 		PageInfo pageInfo = new PageInfo(list);

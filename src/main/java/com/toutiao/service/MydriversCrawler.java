@@ -16,6 +16,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
+import com.toutiao.domain.Image;
 import com.toutiao.domain.News;
 import com.toutiao.util.BaiduSend;
 import com.toutiao.util.Constants;
@@ -32,7 +33,7 @@ public class MydriversCrawler {
 
 	@Autowired
 	private DownImage downImage;
-
+	@Autowired ImageService imageService;
 	private static final Logger logger = LoggerFactory.getLogger(MydriversCrawler.class);
 
 	public void getNews() throws IOException {
@@ -46,7 +47,7 @@ public class MydriversCrawler {
 
 		if (doc != null) {
 			Elements masthead = doc.select("ul.newslist").select("a");
-
+			continue2:
 			for (Element element : masthead) {
 				News news = new News();
 				news.setUrl_(element.attr("href"));
@@ -69,6 +70,7 @@ public class MydriversCrawler {
 						continue;
 					}
 					Elements p = info.select("div.news_info").select("p");
+					Set<Image> imageMap = new HashSet<Image>(); 
 
 					for (Element element2 : p) {
 						if (element2.select("p.jcuo1") == null || element2.select("p.jcuo1").size() > 0) {
@@ -79,10 +81,17 @@ public class MydriversCrawler {
 							if (urlNode != null && urlNode.size() > 0) {
 								for (Element element3 : urlNode) {
 									String url = element3.attr("src");
-									System.out.println(url);
 									String imagePath = downImage.downImage(url);
+									if(imagePath == null){
+										//图片下载失败
+										continue continue2;
+									}
+									Image image = new Image();
+									image.setSrc_(url);
+									image.setPath_(imagePath);
+									imageMap.add(image);
+									
 									element3.attr("src", imagePath);
-									System.out.println("imagePath:" + imagePath);
 									if (element3.parent().attr("href").equals(url)) {
 										element3.parent().attr("href", imagePath);
 									}
@@ -91,12 +100,12 @@ public class MydriversCrawler {
 							text = text.append(element2.toString());
 						}
 					}
-					String imgHtml = null;
-					imgHtml = p.select("img").get(0).toString();
-					if (imgHtml != null && !"".equals(imgHtml)) {
-						news.setImgAlt(p.select("img").get(0).attr("alt"));
-						news.setImg_(p.select("img").get(0).attr("src"));
-					}
+//					String imgHtml = null;
+//					imgHtml = p.select("img").get(0).toString();
+//					if (imgHtml != null && !"".equals(imgHtml)) {
+//						news.setImgAlt(p.select("img").get(0).attr("alt"));
+//						news.setImg_(p.select("img").get(0).attr("src"));
+//					}
 
 					news.setSynTime(DateUtil.getTime());
 					news.setText(text.toString());
@@ -110,6 +119,11 @@ public class MydriversCrawler {
 					news.setBaiduSend("0");
 					newsService.insert(news);
 
+					for (Image image : imageMap) {
+						image.setNews_id(news.getId());
+						imageService.insert(image);
+					}
+					
 				} catch (Exception e) {
 					logger.error("获取内容：" + element.attr("href") + "异常", e);
 					continue;

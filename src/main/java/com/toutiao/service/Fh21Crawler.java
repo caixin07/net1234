@@ -155,6 +155,7 @@ public class Fh21Crawler {
 									if(imagePath == null){
 										//图片下载失败
 										imageMap = null;
+										return;
 									}
 									Image image = new Image();
 									image.setSrc_(src_url);
