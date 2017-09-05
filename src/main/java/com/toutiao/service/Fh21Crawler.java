@@ -85,6 +85,7 @@ public class Fh21Crawler {
 					news.setType(Constants.TYPE_LX);
 					news.setKeys_(IkAnalyzer.getGjc(text.toString(),title));
 					news.setBaiduSend("0");
+					news.setMorePic(Constants.MOREPIC_YES);
 					newsService.insert(news);
 					
 					for (Image image : imageMap) {

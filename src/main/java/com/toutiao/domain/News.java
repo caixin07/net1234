@@ -28,6 +28,7 @@ public class News {
 	String keys_;
 	String des_;
 	String baidusend;
+	String morePic;
 	private List<Image> images;
 	
 	public String getBaidusend() {
@@ -138,6 +139,12 @@ public class News {
 	}
 	public void setBaiduSend(String baiduSend) {
 		this.baidusend = baiduSend;
+	}
+	public String getMorePic() {
+		return morePic;
+	}
+	public void setMorePic(String morePic) {
+		this.morePic = morePic;
 	}
 
 	

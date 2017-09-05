@@ -113,7 +113,7 @@ public class Index {
 			map.put("des", news.getTitle());	
 			map.put("title", news.getTitle()+"—1234资讯网");
 		}
-		return "info";
+		return "index_info";
 	}
 
 	@RequestMapping("/")

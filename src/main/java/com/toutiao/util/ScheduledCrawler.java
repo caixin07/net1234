@@ -35,7 +35,7 @@ public class ScheduledCrawler {
 	public void executeMydriversCrawler() throws IOException {
 		logger.info("ScheduledTest.executeMydriversCrawler 定时任务MydriversCrawler");
 		try {
-			mydriversCrawler.getNews();
+//			mydriversCrawler.getNews();
 		} catch (Exception e) {
 			logger.error("定时任务MydriversCrawler异常",e);
 		}
@@ -68,7 +68,7 @@ public class ScheduledCrawler {
 	public void executeFh21Task() throws IOException {
 		logger.info("ScheduledTest.executeMydriversCrawler 定时任务Fh21Task");
 		try {
-			fh21Crawler.getNews();
+//			fh21Crawler.getNews();
 		} catch (Exception e) {
 			logger.error("定时任务Fh21Task异常",e);
 		}

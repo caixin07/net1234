@@ -91,9 +91,9 @@ public class MydriversCrawler {
 									image.setPath_(imagePath);
 									imageMap.add(image);
 									
-									element3.attr("src", imagePath);
-									if (element3.parent().attr("href").equals(url)) {
-										element3.parent().attr("href", imagePath);
+									element3.attr("src", downImage.getUrl(imagePath));
+									if (element3.parent().attr("href") != null && !"".equals(element3.parent().attr("href"))) {
+										element3.parent().attr("href", downImage.getUrl(imagePath));
 									}
 								}
 							}
@@ -117,6 +117,7 @@ public class MydriversCrawler {
 					news.setType(Constants.TYPE_KJ);
 					news.setKeys_(IkAnalyzer.getGjc(text.toString(),title));
 					news.setBaiduSend("0");
+					news.setMorePic(Constants.MOREPIC_NO);
 					newsService.insert(news);
 
 					for (Image image : imageMap) {

@@ -23,4 +23,7 @@
 	<select id="getChildPicList" parameterType="com.toutiao.domain.Pic" resultMap="pic">
 		select * from pic where parent_id = #{parent_id}
 	</select>
+	 <select id="getOneByUrl" parameterType="com.toutiao.domain.Pic" resultType="com.toutiao.domain.Pic">
+		SELECT * FROM pic WHERE url_ = #{url_}
+	</select>
 </mapper>

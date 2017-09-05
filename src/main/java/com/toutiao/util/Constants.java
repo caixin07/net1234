@@ -12,4 +12,7 @@ public class Constants {
 	public final static String url = "http://www.net1234.cn/";
 	public final static String baiduUrl = "http://data.zz.baidu.com/urls?site=www.net1234.cn&token=NiBUWfZCSif7pm5F";
 	
+	public final static String MOREPIC_YES = "1";//显示为多图
+	public final static String MOREPIC_NO = "0";//显示为单图
+
 }

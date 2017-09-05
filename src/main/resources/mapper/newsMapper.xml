@@ -16,6 +16,7 @@
 		<result property="type" column="type" />
 		<result property="keys_" column="keys_" />
 		<result property="baidusend" column="baidusend" />
+		<result property="morePic" column="morePic" />
 		<collection property="images" ofType="com.toutiao.domain.Image">
 			<id property="id_" column="id_" />
 			<result property="news_id" column="news_id" />
@@ -38,10 +39,10 @@
 	<insert id="insert" parameterType="com.toutiao.domain.News"
 		useGeneratedKeys="true" keyProperty="id">
 		INSERT INTO news
-		(title,user,time,text,synTime,imgAlt,url_,img_,isShow,count,type,keys_,baidusend)
+		(title,user,time,text,synTime,imgAlt,url_,img_,isShow,count,type,keys_,baidusend,morePic)
 		VALUES
 		(#{title},
-		#{user},#{time},#{text},#{synTime},#{imgAlt},#{url_},#{img_},#{isShow},#{count},#{type},#{keys_},#{baidusend})
+		#{user},#{time},#{text},#{synTime},#{imgAlt},#{url_},#{img_},#{isShow},#{count},#{type},#{keys_},#{baidusend},#{morePic})
 	</insert>
 	<select id="getOne" parameterType="int" resultType="com.toutiao.domain.News">
 		SELECT * FROM news WHERE id = #{id}
