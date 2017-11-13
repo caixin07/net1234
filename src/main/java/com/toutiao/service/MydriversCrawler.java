@@ -23,6 +23,7 @@ import com.toutiao.util.Constants;
 import com.toutiao.util.DateUtil;
 import com.toutiao.util.DownImage;
 import com.toutiao.util.IkAnalyzer;
+import com.toutiao.util.RandomCount;
 import com.toutiao.util.ScheduledCrawler;
 
 @Service
@@ -112,7 +113,8 @@ public class MydriversCrawler {
 					news.setTime("");
 					news.setTitle(title);
 					news.setUser("驱动之家");
-					news.setCount("0");
+					news.setCount(RandomCount.getRandomCount()+"");
+					news.setCount_("0");
 					news.setIsShow("1");
 					news.setType(Constants.TYPE_KJ);
 					news.setKeys_(IkAnalyzer.getGjc(text.toString(),title));

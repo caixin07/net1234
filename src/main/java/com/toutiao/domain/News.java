@@ -24,11 +24,13 @@ public class News {
 	String href;
 	String isShow;
 	String count;
+	String count_;
 	String type;
 	String keys_;
 	String des_;
 	String baidusend;
 	String morePic;
+	String url_from;
 	private List<Image> images;
 	
 	public String getBaidusend() {
@@ -42,6 +44,12 @@ public class News {
 	}
 	public void setImages(List<Image> images) {
 		this.images = images;
+	}
+	public String getCount_() {
+		return count_;
+	}
+	public void setCount_(String count_) {
+		this.count_ = count_;
 	}
 	public String getType() {
 		return type;
@@ -145,6 +153,12 @@ public class News {
 	}
 	public void setMorePic(String morePic) {
 		this.morePic = morePic;
+	}
+	public String getUrl_from() {
+		return url_from;
+	}
+	public void setUrl_from(String url_from) {
+		this.url_from = url_from;
 	}
 
 	

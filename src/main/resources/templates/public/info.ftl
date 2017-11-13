@@ -5,7 +5,7 @@
 				<a href="">${news.title}</a>
 			</h1>
 			<div class="article-meta">
-				<span class="item">${news.synTime}</span> <span
+				<span class="item">${news.synTime?substring(0,10)}</span> <span
 					class="item post-views">阅读(${news.count})</span>
 				<!-- <span class="item">评论(0)</span> -->
 				<span class="item"></span>

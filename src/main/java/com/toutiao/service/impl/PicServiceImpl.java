@@ -29,5 +29,10 @@ public class PicServiceImpl implements PicService {
 		return picMapper.getChildPicList(pic);
 
 	}
+	@Override
+	public List<Pic> getPicListRandom() {
+		// TODO Auto-generated method stub
+		return picMapper.getPicListRandom();
+	}
 
 }

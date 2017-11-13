@@ -23,6 +23,7 @@ import com.toutiao.util.Constants;
 import com.toutiao.util.DateUtil;
 import com.toutiao.util.DownImage;
 import com.toutiao.util.IkAnalyzer;
+import com.toutiao.util.RandomCount;
 import com.toutiao.util.ScheduledCrawler;
 
 @Service
@@ -45,7 +46,7 @@ public class Fh21Crawler {
 		try {
 			doc = Jsoup.connect("https://wap.fh21.com.cn/").get();
 		} catch (Exception e) {
-			logger.error("访问http://news.17173.com/异常", e);
+			logger.error("访问https://wap.fh21.com.cn/异常", e);
 			return;
 		}
 		if (doc != null) {
@@ -72,7 +73,7 @@ public class Fh21Crawler {
 					getNextPage(href, text,imageMap);
 
 
-					if(imageMap == null){//图片下载失败
+					if(imageMap == null || imageMap.size() <=0){//图片下载失败
 						continue;
 					}					
 					news.setSynTime(DateUtil.getTime());
@@ -80,7 +81,8 @@ public class Fh21Crawler {
 					news.setTime("");
 					news.setTitle(title);
 					news.setUser("飞华");
-					news.setCount("0");
+					news.setCount(RandomCount.getRandomCount()+"");
+					news.setCount_("0");
 					news.setIsShow("1");
 					news.setType(Constants.TYPE_LX);
 					news.setKeys_(IkAnalyzer.getGjc(text.toString(),title));
@@ -91,8 +93,7 @@ public class Fh21Crawler {
 					for (Image image : imageMap) {
 						image.setNews_id(news.getId());
 						imageService.insert(image);
-					}
-					
+					}					
 				}
 			}
 
@@ -170,6 +171,9 @@ public class Fh21Crawler {
 							}
 							text = text.append(element2.children().toString());
 						}
+					}else{
+						imageMap = null;
+						return;
 					}
 					
 					textElement.select("a").remove();

@@ -3,7 +3,7 @@
 <#list picList as pic>
 	<div class="col-sm-2 col-xs-4" style="padding:5px;">
 		<div class="thumbnail">
-			<a href="/pic/id/${pic.id_}"><img class="img-responsive img-rounded" style="height:150px;" src="/img/${pic.path_}"
+			<a href="/pic/id/${pic.id_}"><img class="img-responsive img-rounded" style="height:150px;" data-original="/img/${pic.path_}"
 				alt="${pic.alt_}"></a>
 		</div>
 	</div>

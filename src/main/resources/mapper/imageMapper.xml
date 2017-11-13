@@ -17,4 +17,7 @@
        	VALUES
        		(#{news_id}, #{path_}, #{alt_},#{type_},#{size_},#{src_})
     </insert>
+    <select id="getImageByNews" parameterType="com.toutiao.domain.Image" resultMap="image">
+		select * from image where news_id = #{news_id}
+	</select>
 </mapper>

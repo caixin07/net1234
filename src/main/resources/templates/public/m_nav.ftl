@@ -2,12 +2,12 @@
 		<div class="container-fluid">
 			<!-- Brand and toggle get grouped for better mobile display -->
 			<div class="navbar-header" style="text-align: center">
-				<a class="navbar-brand" href="#"></a>
+				<a class="navbar-brand" href="/"></a>
 			</div>
 
 			<div class="collapse navbar-collapse">
 				<ul class="nav navbar-nav navbar-right hidden-xs">
-					<li><div class="bdsharebuttonbox">
+					<li> <div class="bdsharebuttonbox">
 							<a href="#" class="bds_more" data-cmd="more"></a><a href="#"
 								class="bds_qzone" data-cmd="qzone"></a><a href="#"
 								class="bds_tsina" data-cmd="tsina"></a><a href="#"
@@ -45,12 +45,7 @@
 					</li>
 				</ul>
 				<ul class="nav navbar-nav navbar-right visible-xs-block">
-					<li class="active"><a href="#">推荐</a></li>
-					<li><a href="#">两性</a></li>
-					<li><a href="#">美女</a></li>
-					<li><a href="#">娱乐</a></li>
-					<li><a href="#">影片</a></li>
-					<li><a href="#">科技</a></li>
+					${m_bar}
 				</ul>
 			</div>
 			<!-- /.navbar-collapse -->

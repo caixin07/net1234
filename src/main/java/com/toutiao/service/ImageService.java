@@ -9,4 +9,5 @@ import com.toutiao.domain.News;
 
 public interface ImageService {
 	public void insert(Image image);
+	public List<Image> getImageByNews(Image image);
 }

@@ -18,5 +18,10 @@ public class ImageServiceImpl implements ImageService {
 	public void insert(Image image) {		
 		imageMapper.insert(image);
 	}
+	@Override
+	public List<Image> getImageByNews(Image image) {
+		// TODO Auto-generated method stub
+		return imageMapper.getImageByNews(image);
+	}
 
 }

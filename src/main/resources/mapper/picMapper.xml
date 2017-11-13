@@ -26,4 +26,7 @@
 	 <select id="getOneByUrl" parameterType="com.toutiao.domain.Pic" resultType="com.toutiao.domain.Pic">
 		SELECT * FROM pic WHERE url_ = #{url_}
 	</select>
+	<select id="getPicListRandom" resultMap="pic">
+		SELECT * FROM pic where parent_id is null and path_ is not null ORDER BY RAND() 
+	</select>
 </mapper>

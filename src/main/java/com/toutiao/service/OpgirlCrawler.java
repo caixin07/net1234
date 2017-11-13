@@ -37,7 +37,7 @@ public class OpgirlCrawler {
 	public static Map<String, String> headers = null;
 
 	public void getNews() throws Exception {
-		for (int i = 0; i <= 160; i++) {
+		for (int i = 100; i <= 140; i++) {
 			System.out.println("**************开始处理第" + i + "页**************");
 			String json = null;
 			try {
@@ -70,6 +70,9 @@ public class OpgirlCrawler {
 				String height = map.get("height")+"";
 
 				String path_ = downImage.downImage("http:" + url);
+				if(path_ == null){
+					continue imgList;
+				}
 				String pictureCount = map.get("pictureCount") + "";
 				System.out.println("title:"+title);
 				Pic pic = new Pic();
@@ -112,6 +115,10 @@ public class OpgirlCrawler {
 						for (Map map2 : imgs) {
 							String path_2 = downImage.downImage("http:" + map2.get("url").toString());
 
+							if(path_2 == null){
+								continue imgList;
+							}
+							
 							Pic pic2 = new Pic();
 							pic2.setAlt_(title);
 							pic2.setPath_(path_2);

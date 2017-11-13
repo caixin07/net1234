@@ -13,4 +13,5 @@ public interface PicMapper {
 	public Pic getOneByUrl(Pic pic);
 	public List<Pic> getPicList();
 	public List<Pic> getChildPicList(Pic pic);
+	public List<Pic> getPicListRandom();
 }

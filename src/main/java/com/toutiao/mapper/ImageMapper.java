@@ -9,4 +9,5 @@ import com.toutiao.domain.News;
 @Mapper
 public interface ImageMapper {
 	public void insert(Image image);
+	public List<Image> getImageByNews(Image image);
 }

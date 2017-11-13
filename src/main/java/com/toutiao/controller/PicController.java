@@ -51,7 +51,7 @@ public class PicController {
 	@RequestMapping("/pic/{pageNum}")
 	public String showPic(ModelMap map, @PathVariable Integer pageNum, HttpServletRequest request) throws Exception {
 		pageNum = pageNum == null ? 1 : pageNum;
-		PageHelper.startPage(pageNum, pageSize);
+		PageHelper.startPage(pageNum, 60);
 		List<Pic> list = picService.getPicList();
 
 		PageInfo pageInfo = new PageInfo(list);
@@ -62,15 +62,31 @@ public class PicController {
 
 		int startNum = pageNum - 3 <= 0 ? 1 : pageNum - 3;
 		int endNum = pageNum + 3 >= (int) total ? (int) total : pageNum + 3;
+
+
+		//上一页
+		String lastPage = "1";
+		if(pageNum > 1){
+			lastPage = (pageNum - 1) + "";
+		}
+
+		pageList.append("<li><a href='" + request.getAttribute("basePath") + "/pic/" + lastPage
+				+ "' aria-label='Previous'><span aria-hidden='true'>&laquo;</span></a></li>");
+
 		for (int i = startNum; i < pageNum; i++) {
-			pageList.append("<li><a href='" + request.getAttribute("basePath") + "/pic/" + i + "'>" + i + "</a></li>");
+			pageList.append("<li><a href='" + request.getAttribute("basePath") + "/pic/" + i + "'>" + i + " <span class='sr-only'>(current)</span></a></li>");
 		}
-		pageList.append("<li class='active'><span>" + pageNum + "</span></li>");
+		pageList.append("<li class='active'><a href='" + request.getAttribute("basePath") + "/pic/" + pageNum + "'>"+pageNum+" <span class='sr-only'>(current)</span></a></li>");
 		for (int i = pageNum + 1; i <= endNum; i++) {
-			pageList.append("<li><a href='" + request.getAttribute("basePath") + "/pic/" + i + "'>" + i + "</a></li>");
+			pageList.append("<li><a href='" + request.getAttribute("basePath") + "/pic/" + i + "'>" + i + " <span class='sr-only'>(current)</span></a></li>");
 		}
-		pageList.append("<li><span> ... </span></li><li class='next-page'><a href='" + request.getAttribute("basePath")
-				+ "/pic/" + nextPage + "'>下一页</a></li><li><span>共" + total + " 页</span></li>");
+
+		//下一页
+		if(0==nextPage){
+			nextPage = 1;
+		}
+		pageList.append("<li><a href='" + request.getAttribute("basePath") + "/pic/"
+				+ nextPage + "' aria-label='Next'> <span aria-hidden='true'>&raquo;</span></a></li>");
 
 		// 总页数
 
@@ -78,7 +94,7 @@ public class PicController {
 		map.put("nextPage", nextPage);
 		map.put("pageList", pageList.toString());
 		map.put("picList", list);
-		publicController.pub(map, request);
+		publicController.pub(map, request,Constants.TYPE_MN);
 
 		
 		return "index_pic_list";
@@ -90,6 +106,7 @@ public class PicController {
 		pic.setParent_id(id);
 		List<Pic> pics = picService.getChildPicList(pic);
 		map.put("pics", pics);
+		publicController.pub(map, request,Constants.TYPE_MN);
 		return "index_pics";
 	}
 }

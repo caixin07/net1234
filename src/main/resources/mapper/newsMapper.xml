@@ -13,10 +13,12 @@
 		<result property="imgAlt" column="imgAlt" />
 		<result property="isShow" column="isShow" />
 		<result property="count" column="count" />
+		<result property="count_" column="count_" />
 		<result property="type" column="type" />
 		<result property="keys_" column="keys_" />
 		<result property="baidusend" column="baidusend" />
 		<result property="morePic" column="morePic" />
+		<result property="url_from" column="url_from" />
 		<collection property="images" ofType="com.toutiao.domain.Image">
 			<id property="id_" column="id_" />
 			<result property="news_id" column="news_id" />
@@ -28,21 +30,22 @@
 		</collection >
 	</resultMap>
 	<sql id="query_news">	     
-		SELECT * from news a left join image b on a.id = b.news_id where a.isShow = '1' 
+		SELECT *,left(synTime,10) as time1 from news a where a.isShow = '1' 
 	</sql>
 	<select id="getAll" resultMap="news">
-		  <include refid="query_news" /> order by synTime desc
+		  <include refid="query_news" /> 
+		  order by synTime desc
 	</select>
 	<select id="getAllForTuijian" resultMap="news">
-		<include refid="query_news" /> order by count desc
+		<include refid="query_news" /> order by count_ desc
 	</select>
 	<insert id="insert" parameterType="com.toutiao.domain.News"
 		useGeneratedKeys="true" keyProperty="id">
 		INSERT INTO news
-		(title,user,time,text,synTime,imgAlt,url_,img_,isShow,count,type,keys_,baidusend,morePic)
+		(title,user,time,text,synTime,imgAlt,url_,img_,isShow,count,count_,type,keys_,baidusend,morePic,url_from)
 		VALUES
 		(#{title},
-		#{user},#{time},#{text},#{synTime},#{imgAlt},#{url_},#{img_},#{isShow},#{count},#{type},#{keys_},#{baidusend},#{morePic})
+		#{user},#{time},#{text},#{synTime},#{imgAlt},#{url_},#{img_},#{isShow},#{count},#{count_},#{type},#{keys_},#{baidusend},#{morePic},#{url_from})
 	</insert>
 	<select id="getOne" parameterType="int" resultType="com.toutiao.domain.News">
 		SELECT * FROM news WHERE id = #{id}
@@ -53,16 +56,22 @@
 	</select>
 	<select id="getListByType" parameterType="com.toutiao.domain.News"
 		resultMap="news">
-		SELECT * FROM news WHERE type = #{type} order by synTime desc
+		<include refid="query_news" /> 
+		<if test="type != null">
+            and type = #{type} order by synTime desc
+        </if>
+        <if test="type == null">
+             order by synTime desc
+        </if>
 	</select>
 	<select id="getListByBaiduSend" parameterType="com.toutiao.domain.News"
 		resultMap="news">
-		SELECT * FROM news WHERE baidusend = #{baidusend} order by synTime desc
+		<include refid="query_news" /> and baidusend = #{baidusend} order by synTime desc
 	</select>
 	<update id="updateBaiduSend" parameterType="com.toutiao.domain.News">
 		UPDATE news SET baidusend = #{baidusend} where id = #{id}
 	</update>
 	<update id="updateCount" parameterType="com.toutiao.domain.News">
-		UPDATE news SET count = #{count} where id = #{id}
+		UPDATE news SET count = #{count}, count_ = #{count_} where id = #{id}
 	</update>
 </mapper>

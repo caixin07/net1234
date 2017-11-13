@@ -19,7 +19,7 @@ public class Run {
 	@Bean
 	public EmbeddedServletContainerFactory servletCon() {
 		TomcatEmbeddedServletContainerFactory factory = new TomcatEmbeddedServletContainerFactory();
-		factory.setPort(8001);
+		factory.setPort(8002);
 		return factory;
 	}
 }
